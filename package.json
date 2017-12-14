@@ -1,0 +1,23 @@
+{
+  "name": "Geoserver-Proxy",
+  "version": "1.0.0",
+  "description": "Proxy for GS,used to extract Visas and add to EQL ",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Geoserver, proxy"
+  ],
+  "license": "Unlicense",
+  "private": true,
+  "dependencies": {
+    "async": "^2.6.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "http-proxy": "1.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.1",
+    "morgan": "^1.9.0"
+  }
+}
