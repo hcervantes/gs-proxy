@@ -1,7 +1,8 @@
 const http = require('http'),
 httpProxy = require('http-proxy'),
 headerFn = require('./headerFunctions'),
-querystring = require('querystring');
+querystring = require('querystring'),
+enviro = require('./app/config/enviro');
 
 //
 // Create a proxy server with custom application logic
@@ -98,10 +99,11 @@ var server = http.createServer(function(req, res) {
     }
   } 
 
-
+  // Get the geoserver host from config
+  var gs_host = enviro.geoserver_host;
 
   proxy.web(req, res, {
-    target: 'http://127.0.0.1:9090/'
+    target: gs_host
   });
 });
 

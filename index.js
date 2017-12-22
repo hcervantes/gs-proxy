@@ -31,10 +31,17 @@ app.delete('/del_user', function (req, res) {
 
 // This responds a GET request for the /list_user page.
 app.get('/token', function (req, res) {
-  
+    
     // Generate token
     // sign with RSA SHA256
     var jwtPayload = JSON.parse(fs.readFileSync('exampleJWT.json'));
+    // Check to see if passing in visas
+    var visas = req.query.visas; // Expecting "US, UK, IQ, MX"
+    if(visas) {
+        visas = visas.replace(/\s/g, ''); // Remove any spaces
+        visas = visas.split(",");
+        jwtPayload.PKI_GROUPS.visas = visas;
+    }
     var cert = fs.readFileSync('private.key');  // get private key
     //var token = jwt.sign(jwtPayload, cert);
     var token = jwt.sign(jwtPayload, 'secret', { expiresIn: '1h' });
